@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<script src="main.js"></script>
+
+    <div class="grid-container">
+        <div class="secret-images-container">
+            <p class="good-job-text">Good job, Queen!</p>
+            <img src="resources/dolphins.png" class="secret-images">
+        </div>
+        <div class="main-container">
+            <div class="pomodoro-timer-container">
+                <div class="pomodoro-container">
+                    <img src="resources/pomodoro.png" class="pomodoro-image">
+                </div>
+                <div class="timer-container">
+                    <p class="start-text">Start a countdown</p>
+
+                    <div class="button-countdown-container">
+                        <button class="button" id="start-button" onclick="start_timer()">25 mins</button>
+                        <button class="button" id="countdown-button">24:59</button>
+                    </div>
+
+                    <button class="button" id="restart-button" onclick="restart_timer()">Restart</button>
+                </div>
+            </div>
+        </div>
+        <div class="secret-images-container">
+            <p class="good-job-text">Good job, Queen!</p>
+            <img src="resources/dolphins.png" class="secret-images">
+        </div>
+        <audio id="myAudio" src="resources/alarmsound.mp3"></audio>
+    </div>
+
+</body>
+</html>

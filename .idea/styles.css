@@ -1,0 +1,127 @@
+body {
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100vh;
+}
+
+.main-container {
+    grid-column: 2;
+}
+
+.pomodoro-timer-container {
+    display: grid;
+    grid-template-rows: 1fr 1.5fr 1fr 0.5fr;
+    height: 100vh;
+    place-items: center;
+}
+
+.pomodoro-container {
+    grid-row: 2;
+}
+
+.timer-container {
+    grid-row: 3;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    place-items: center;
+    text-align: center;
+}
+
+.secret-images-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.secret-images{
+    width: 34vw;
+    align-self: center;
+    display: none;
+}
+
+.good-job-text{
+    display: none;
+    font-size: 25px;
+    font-family: 'Avenir', sans-serif;
+    color: deeppink;
+    font-family: bold;
+}
+
+.start-text {
+    font-size: 25px;
+    font-family: 'Avenir', sans-serif;
+    font-weight: bold;
+    display: block;
+    color: green;
+}
+
+.button-countdown-container {
+    grid-row: 2;
+}
+
+.countdown-container {
+    border: 2px solid gray;
+    border-radius: 15px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    margin: 0;
+}
+
+.countdown-text {
+    font-size: 50px;
+    font-family: 'Avenir', sans-serif;
+}
+
+.button {
+    color: white;
+    border: none;
+    border-radius: 15px;
+    height: 10vh;
+    font-size: 40px;
+    width: 20vw;
+    font-family: 'Avenir', sans-serif;
+    font-weight: bold;
+}
+
+#start-button {
+    grid-row: 2;
+    background: rgb(34, 139, 34);
+}
+
+#start-button:hover {
+    background: rgb(0, 100, 0);
+}
+
+#countdown-button {
+    grid-row: 2;
+    background: transparent;
+    border-color: gray;
+    display: none;
+    color: rgb(204, 0, 0);
+    font-size: 50px;
+}
+
+#restart-button {
+    grid-row: 3;
+    background: rgb(204, 0, 0);
+    display: none;
+    height: 7vh;
+}
+
+#restart-button:hover {
+    background-color: rgb(153, 0, 0);
+}
+
+.pomodoro-image {
+    height: 35vh;
+}
