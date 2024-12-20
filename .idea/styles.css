@@ -21,9 +21,32 @@ button, p{
 
 .pomodoro-timer-container {
     display: grid;
-    grid-template-rows: 1fr 1.5fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1.2fr 1fr 0.5fr;
     height: 100vh;
     place-items: center;
+}
+
+.session-type-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    width: 30vw;
+}
+
+.session-type{
+    width: 100%;
+    text-align: center;
+}
+
+hr{
+    margin: 20px;
+    border: none;
+    height: 2px;
+    background-color: #505050;
+}
+
+.session-type-text{
+    font-size: 20px;
 }
 
 .pomodoro-container {
@@ -59,7 +82,6 @@ button, p{
     width: 34vw;
     align-self: center;
     display: none;
-    padding: 30px;
 }
 
 .good-job-text{
