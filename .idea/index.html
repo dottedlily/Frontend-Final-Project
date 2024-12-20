@@ -4,38 +4,52 @@
     <meta charset="UTF-8">
     <title>Pomodoro Timer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="resources/pomodoro.png" type="image/x-icon">
 </head>
 <body>
-<script src="main.js"></script>
+
+<!--Medium:-->
+<!--Allow users to customize the work and break intervals.-->
 
     <div class="grid-container">
         <div class="secret-images-container">
             <p class="good-job-text">Good job, Queen!</p>
-            <img src="resources/dolphins.png" class="secret-images">
+            <video class="secret-images" id="myVideo" width="640" height="360" autoplay loop muted>
+                <source src="resources/video.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="main-container">
             <div class="pomodoro-timer-container">
                 <div class="pomodoro-container">
                     <img src="resources/pomodoro.png" class="pomodoro-image">
+
                 </div>
                 <div class="timer-container">
-                    <p class="start-text">Start a countdown</p>
+                    <p class="start-text">Start countdown</p>
 
-                    <div class="button-countdown-container">
-                        <button class="button" id="start-button" onclick="start_timer()">25 mins</button>
-                        <button class="button" id="countdown-button">24:59</button>
+                    <div class="countdown-container">
+                        <textarea id="countdown" class="textarea">25:00</textarea>
                     </div>
 
+                    <button class="button" id="start-button" onclick="start_timer()">
+                        <img src="resources/triangle.png" alt="Button Icon" class="button-icon">
+                    </button>
+
                     <button class="button" id="restart-button" onclick="restart_timer()">Restart</button>
+                </div>
+                <div class="sessions-number-container">
+                    <p class="sessions-text">You have completed 0 sessions</p>
                 </div>
             </div>
         </div>
         <div class="secret-images-container">
             <p class="good-job-text">Good job, Queen!</p>
-            <img src="resources/dolphins.png" class="secret-images">
+            <video class="secret-images" id="myVideo" width="640" height="360" autoplay loop muted>
+                <source src="resources/video.mp4" type="video/mp4">
+            </video>
         </div>
         <audio id="myAudio" src="resources/alarmsound.mp3"></audio>
     </div>
-
+<script src="main.js"></script>
 </body>
 </html>

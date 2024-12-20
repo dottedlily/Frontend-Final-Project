@@ -1,53 +1,70 @@
-let countdownTimer;
-let remainingTime = 25 * 60;
+let countdown_timer;
+let remaining_time = 2;
+let completed_sessions = 0;
+let previous_interval = 2;
+
+var countdown = document.getElementById("countdown");
+const start_text = document.getElementsByClassName("start-text")[0];
+const start_button = document.getElementById("start-button");
+const restart_button = document.getElementById("restart-button");
+const secret_images = document.getElementsByClassName("secret-images");
+const good_job_text = document.getElementsByClassName("good-job-text");
+var audio = document.getElementById('myAudio');
+const sessions_text = document.getElementsByClassName("sessions-text")[0];
+
+audio.addEventListener("ended", function () {
+    hideImagesAndText();
+});
 
 function start_timer() {
-    const start_text = document.getElementsByClassName("start-text")[0];
+    audio.pause();
+    audio.currentTime = 0;
+    countdown.disabled = true;
     start_text.textContent = "Time to work :)";
-    const start_button = document.getElementById("start-button");
     start_button.style.display = "none";
-    const restart_button = document.getElementById("restart-button");
     restart_button.style.display = "block";
-    const countdown_button = document.getElementById("countdown-button");
-    countdown_button.style.display = "block";
-    const secret_images = document.getElementsByClassName("secret-images");
-    secret_images[0].style.display = "none";
-    secret_images[1].style.display = "none";
-    const good_job_text = document.getElementsByClassName("good-job-text");
-    good_job_text[0].style.display = "none";
-    good_job_text[1].style.display = "none";
-    countdownTimer = setInterval(updateCountdown, 1000);
+    hideImagesAndText();
+
+    try {
+        const time = countdown.value.split(":");
+
+        if (time.length !== 2) {
+            throw new Error("Invalid time format. Please use the format mm:ss.");
+        }
+        let minutes = parseInt(time[0]);
+        let seconds = parseInt(time[1]);
+
+        if (isNaN(minutes) || isNaN(seconds) || minutes > 59 || seconds > 59 || time[0].length > 2 || time[1].length > 2) {
+            throw new Error("Invalid time format. Please use the format mm:ss.");
+        }
+
+        remaining_time = minutes * 60 + seconds;
+        previous_interval = remaining_time;
+        countdown_timer = setInterval(updateCountdown, 1000);
+
+    } catch (error) {
+        alert("Error: " + error.message);
+        resetElements();
+        hideImagesAndText();
+    }
 }
 
 function updateCountdown() {
-    if (remainingTime <= 0) {
-        clearInterval(countdownTimer);
-        var audio = document.getElementById('myAudio');
+    if (remaining_time <= 0) {
+        clearInterval(countdown_timer);
+        completed_sessions++;
         audio.play();
-        const secret_images = document.getElementsByClassName("secret-images");
-        secret_images[0].style.display = "block";
-        secret_images[1].style.display = "block";
-        const good_job_text = document.getElementsByClassName("good-job-text");
-        good_job_text[0].style.display = "block";
-        good_job_text[1].style.display = "block";
-        const start_text = document.getElementsByClassName("start-text")[0];
-        start_text.textContent = "Start the countdown";
-        const start_button = document.getElementById("start-button");
-        start_button.style.display = "block";
-        const restart_button = document.getElementById("restart-button");
-        restart_button.style.display = "none";
-        const countdown_button = document.getElementById("countdown-button");
-        countdown_button.style.display = "none";
+        resetElements();
+        showImagesAndText();
         return;
+    } else {
+        var minutes = Math.floor(remaining_time / 60);
+        var seconds = remaining_time % 60;
+        var minutesString = formatTime(minutes);
+        var secondsString = formatTime(seconds);
+        countdown.value = minutesString + ":" + secondsString;
+        remaining_time--;
     }
-    var countdown_button = document.getElementById("countdown-button");
-    var minutes = Math.floor(remainingTime / 60);
-    var seconds = remainingTime % 60;
-    var minutesString = formatTime(minutes);
-    var secondsString = formatTime(seconds);
-
-    countdown_button.textContent = minutesString + ":" + secondsString;
-    remainingTime--;
 }
 
 function formatTime(time) {
@@ -58,9 +75,51 @@ function formatTime(time) {
 }
 
 function restart_timer() {
-    clearInterval(countdownTimer);
-    remainingTime = 25 * 60;
-    countdownTimer = setInterval(updateCountdown, 1000);
-    const countdown_button = document.getElementById("countdown-button");
-    countdown_button.textContent = "24:59";
+    clearInterval(countdown_timer);
+    remaining_time = previous_interval;
+    var minutes = Math.floor(remaining_time / 60);
+    var seconds = remaining_time % 60;
+    var minutesString = formatTime(minutes);
+    var secondsString = formatTime(seconds);
+    countdown.value = minutesString + ":" + secondsString;
+    countdown_timer = setInterval(updateCountdown, 1000);
+}
+
+countdown.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+    } if (
+        !(event.key >= "0" && event.key <= "9" ||
+            event.key === ":" ||
+            event.key === "Backspace" ||
+            event.key === "ArrowLeft" ||
+            event.key === "ArrowRight" ||
+            event.key === "Tab")) {
+        event.preventDefault();
+    }
+});
+
+function resetElements() {
+    countdown.disabled = false;
+    start_text.textContent = "Start countdown";
+    sessions_text.textContent = "You have completed " + completed_sessions + " sessions";
+    start_button.style.display = "block";
+    restart_button.style.display = "none";
+    countdown.value = "25:00";
+}
+
+function showImagesAndText() {
+    secret_images[0].style.display = "block";
+    secret_images[1].style.display = "block";
+    good_job_text[0].style.display = "block";
+    good_job_text[1].style.display = "block";
+}
+
+function hideImagesAndText() {
+    secret_images[0].style.display = "none";
+    secret_images[1].style.display = "none";
+    secret_images[0].currentTime = 0;
+    secret_images[1].currentTime = 0;
+    good_job_text[0].style.display = "none";
+    good_job_text[1].style.display = "none";
 }

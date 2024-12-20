@@ -4,6 +4,11 @@ body {
     padding: 0;
 }
 
+button, p{
+    font-family: 'Avenir', sans-serif;
+    font-weight: bold;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -33,6 +38,15 @@ body {
     text-align: center;
 }
 
+.sessions-number-container{
+    grid-row: 4;
+    place-items: center;
+}
+
+.sessions-text{
+    color: dimgray;
+}
+
 .secret-images-container{
     display: flex;
     flex-direction: column;
@@ -45,41 +59,36 @@ body {
     width: 34vw;
     align-self: center;
     display: none;
+    padding: 30px;
 }
 
 .good-job-text{
     display: none;
     font-size: 25px;
-    font-family: 'Avenir', sans-serif;
-    color: deeppink;
-    font-family: bold;
+    color: dodgerblue;
+    font-style: italic;
 }
 
 .start-text {
     font-size: 25px;
-    font-family: 'Avenir', sans-serif;
-    font-weight: bold;
     display: block;
     color: green;
 }
 
-.button-countdown-container {
-    grid-row: 2;
-}
-
 .countdown-container {
-    border: 2px solid gray;
+    grid-row: 2;
+    border: 1px solid  rgb(34, 139, 34);
     border-radius: 15px;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     height: 10vh;
     margin: 0;
 }
 
 .countdown-text {
     font-size: 50px;
-    font-family: 'Avenir', sans-serif;
 }
 
 .button {
@@ -87,29 +96,43 @@ body {
     border: none;
     border-radius: 15px;
     height: 10vh;
-    font-size: 40px;
+    font-size: 35px;
+    width: 15vw;
+}
+
+.button-icon {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+}
+
+.textarea {
+    resize: none;
+    color: rgb(204, 0, 0);
+    border: none;
+    height: 10vh;
+    font-size: 50px;
     width: 20vw;
-    font-family: 'Avenir', sans-serif;
-    font-weight: bold;
+    grid-row: 2;
+    background: transparent;
+    text-align: center;
+    line-height: 10vh;
+}
+
+.textarea:focus {
+    outline: none;
+    border: none;
 }
 
 #start-button {
-    grid-row: 2;
     background: rgb(34, 139, 34);
+    height: 7vh;
 }
 
 #start-button:hover {
     background: rgb(0, 100, 0);
 }
 
-#countdown-button {
-    grid-row: 2;
-    background: transparent;
-    border-color: gray;
-    display: none;
-    color: rgb(204, 0, 0);
-    font-size: 50px;
-}
 
 #restart-button {
     grid-row: 3;
